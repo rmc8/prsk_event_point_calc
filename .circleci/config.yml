@@ -13,7 +13,7 @@ jobs:
           command: pip install flake8
       - run:
           name: Lint with flake8
-          command: sudo flake8 --max-complexity 10
+          command: flake8 --max-complexity 10
 
   test:
     docker:

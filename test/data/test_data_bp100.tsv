@@ -1,4 +1,4 @@
-LiveBonus	EventBonus	ScoreLowerLimit	ScoreUpperLimit	EventPoint
+liveBonus	eventBonus	scoreLowerLimit	scoreUpperLimit	eventPoint
 0	0	0	19999	100
 0	1	0	19999	101
 0	2	0	19999	102
@@ -5348,7 +5348,7 @@ LiveBonus	EventBonus	ScoreLowerLimit	ScoreUpperLimit	EventPoint
 0	328	260000	279999	483
 0	329	260000	279999	484
 0	330	260000	279999	485
-0	331	260000	279999	A
+0	331	260000	279999	487
 0	332	260000	279999	488
 0	333	260000	279999	489
 0	334	260000	279999	490

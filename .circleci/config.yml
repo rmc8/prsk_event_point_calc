@@ -1,0 +1,36 @@
+# .circleci/config.yml
+
+version: 2.1
+
+jobs:
+  lint:
+    docker:
+      - image: python:latest
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: pip install flake8
+      - run:
+          name: Lint with flake8
+          command: sudo flake8 --max-complexity 10
+
+  test:
+    docker:
+      - image: python:latest
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: pip install -r requirements.txt
+      - run:
+          name: Run Tests
+          command: pytest # あるいは、あなたのテストコマンド
+
+workflows:
+  version: 2.1
+  lint_and_test:
+    jobs:
+      - lint
+      - test
+

@@ -4,8 +4,9 @@ version: 2.1
 
 jobs:
   lint:
+    working_directory: ~/prsk_event_point_calc
     docker:
-      - image: python:latest
+      - image: python:3.10
     steps:
       - checkout
       - run:
@@ -16,8 +17,9 @@ jobs:
           command: flake8 --max-complexity 10
 
   test:
+    working_directory: ~/prsk_event_point_calc
     docker:
-      - image: python:latest
+      - image: python:3.10
     steps:
       - checkout
       - run:

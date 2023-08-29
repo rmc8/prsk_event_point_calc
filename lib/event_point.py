@@ -42,7 +42,6 @@ def truncate_to_two_decimal_places(num: float) -> float:
     return round(num * 100) / 100.0
 
 
-
 def _calculate_event_points(scaled_score: float, basic_point: float, live_bonus_multiplier: int) -> int:
     """
     Compute event points using the scaled score, basic point, and a live bonus multiplier.

@@ -13,7 +13,7 @@ def get_score_ranges() -> List[Tuple[int, int]]:
 
 def main():
     for bp in BASIC_POINTS:
-        prod = product(range(11), range(386), get_score_ranges())
+        prod = product(range(11), range(431), get_score_ranges())
         table: list = []
         for lb, eb, (lower_limit, upper_limit) in prod:
             pt = ep.calc(

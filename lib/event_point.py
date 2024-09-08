@@ -1,3 +1,4 @@
+from decimal import Decimal, ROUND_DOWN
 from typing import Dict
 
 
@@ -29,7 +30,7 @@ def score_bonus(score: int) -> int:
     return score // 20000
 
 
-def truncate_to_two_decimal_places(num: float) -> float:
+def truncate_to_two_decimal_places(num: Decimal) -> Decimal:
     """
     Truncate a floating-point number to retain only two decimal places.
 
@@ -39,10 +40,12 @@ def truncate_to_two_decimal_places(num: float) -> float:
     Returns:
         float: Number truncated to two decimal places.
     """
-    return round(num * 100) / 100.0
+    return num.quantize(Decimal("0.01"), rounding=ROUND_DOWN)
 
 
-def _calculate_event_points(scaled_score: float, basic_point: float, live_bonus_multiplier: int) -> int:
+def _calculate_event_points(
+    scaled_score: Decimal, basic_point: int, live_bonus_multiplier: int
+) -> int:
     """
     Compute event points using the scaled score, basic point, and a live bonus multiplier.
 
@@ -54,8 +57,8 @@ def _calculate_event_points(scaled_score: float, basic_point: float, live_bonus_
     Returns:
         int: Total event points.
     """
-    truncated_score: float = truncate_to_two_decimal_places(scaled_score)
-    scaled_basic_point: float = float(basic_point / 100)
+    truncated_score = truncate_to_two_decimal_places(scaled_score)
+    scaled_basic_point = Decimal(basic_point) / Decimal(100)
     val: int = int(truncated_score * scaled_basic_point)
     return val * live_bonus_multiplier
 
@@ -75,7 +78,7 @@ def calc(score: int, event_bonus: int, basic_point: int, live_bonus: int) -> int
     """
     # print((100 + score_bonus(score)) * ((100 + event_bonus) / 100))
     scaled_score: float = truncate_to_two_decimal_places(
-        (100 + score_bonus(score)) * ((100 + event_bonus) / 100)
+        Decimal(100 + score_bonus(score)) * (Decimal(100 + event_bonus) / 100)
     )
     # print(scaled_score)
 

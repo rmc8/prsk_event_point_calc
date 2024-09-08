@@ -55,7 +55,7 @@ def _calculate_event_points(scaled_score: float, basic_point: float, live_bonus_
         int: Total event points.
     """
     truncated_score: float = truncate_to_two_decimal_places(scaled_score)
-    scaled_basic_point: int = int(basic_point / 100)
+    scaled_basic_point: float = float(basic_point / 100)
     val: int = int(truncated_score * scaled_basic_point)
     return val * live_bonus_multiplier
 

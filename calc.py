@@ -8,7 +8,7 @@ from lib.bp import BASIC_POINTS
 
 
 def get_score_ranges() -> List[Tuple[int, int]]:
-    return [(score, score + 19_999) for score in range(0, 2_500_001, 20_000)]
+    return [(score, score + 19_999) for score in range(0, 2_820_001, 20_000)]
 
 
 def main():

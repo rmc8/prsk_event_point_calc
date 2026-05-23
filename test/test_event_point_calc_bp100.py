@@ -1,6 +1,6 @@
 import unittest
 
-import pandas as pd
+import polars as pl
 
 from lib.event_point import calc
 
@@ -8,9 +8,10 @@ from lib.event_point import calc
 class TestEventPointCalculation(unittest.TestCase):
 
     def _load_test_data(self, filename):
-        df = pd.read_csv(filename, sep="\t")
-        df = df[df["liveBonus"] == 0]
-        return df.to_dict("records")
+        normalized_filename = filename.replace("\\", "/")
+        df = pl.read_csv(normalized_filename, separator="\t")
+        df = df.filter(pl.col("liveBonus") == 0)
+        return df.iter_rows(named=True)
 
     def test_calc_from_file(self):
         test_data = self._load_test_data(r"test\data\test_data_bp100.tsv")

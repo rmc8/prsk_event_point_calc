@@ -1,14 +1,14 @@
 from typing import List, Tuple
 from itertools import product
 
-import pandas as pd
+import polars as pl
 
 from lib import event_point as ep
 from lib.bp import BASIC_POINTS
 
 
 def get_score_ranges() -> List[Tuple[int, int]]:
-    return [(score, score + 19_999) for score in range(0, 3_000_001, 20_000)]
+    return [(score, score + 19_999) for score in range(0, 3_300_001, 20_000)]
 
 
 def main():
@@ -30,9 +30,9 @@ def main():
                 "eventPoint": pt,
             }
             table.append(rec)
-        df = pd.DataFrame(table)
+        df = pl.DataFrame(table)
         path = f"table/event_point_table_bp{bp}.tsv"
-        df.to_csv(path, sep="\t", index=False)
+        df.write_csv(path, separator="\t")
 
 
 if __name__ == "__main__":
